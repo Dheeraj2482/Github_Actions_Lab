@@ -1,18 +1,23 @@
-name: My First CI
+name: Python CI
 
 on:
   push:
+  pull_request:
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Show current directory
-        run: pwd
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      - name: Show files
-        run: ls -la
+      - name: Run tests
+        run: |
+          pip install pytest
+          pytest
