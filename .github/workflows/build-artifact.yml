@@ -20,7 +20,7 @@ jobs:
           ./build.sh
 
       - name: Upload artifact
-        uses: action/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: application-build
           path: build-artifact/dist/
