@@ -24,3 +24,4 @@ jobs:
         with:
           name: application-build
           path: wrong-folder/
+          if-no-files-found: error
