@@ -1,0 +1,26 @@
+name: Build Artifact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run build
+        run: |
+          cd build-artifact
+          chmod +x build.sh
+          ./build.sh
+
+      - name: Upload artifact
+        uses: action/upload-artifact@v4
+        with:
+          name: application-build
+          path: build-artifact/dist/
