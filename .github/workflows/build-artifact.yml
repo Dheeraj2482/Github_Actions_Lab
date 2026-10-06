@@ -23,5 +23,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: application-build
-          path: wrong-folder/
-          if-no-files-found: error
+          path: build-artifact/dist/
+          #if-no-files-found: error
