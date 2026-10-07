@@ -32,4 +32,7 @@ jobs:
 
       - name: Stop container
         if: always()
-        run: docker rm -f devops-lab 
+        run: docker rm -f devops-lab
+
+      - name: Show container logs
+        run: docker logs devops-lab
