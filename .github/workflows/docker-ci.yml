@@ -30,9 +30,11 @@ jobs:
           sleep 5
           curl http://localhost:5000/health
 
+      - name: Show container logs
+        run: docker logs devops-lab
+
       - name: Stop container
         if: always()
         run: docker rm -f devops-lab
 
-      - name: Show container logs
-        run: docker logs devops-lab
+      
