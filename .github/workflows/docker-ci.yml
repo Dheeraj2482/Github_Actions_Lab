@@ -3,6 +3,7 @@ name: Docker CI
 on:
   push:
   Pull_request:
+  workflow_dispatch:
 
 jobs:
   docker:
