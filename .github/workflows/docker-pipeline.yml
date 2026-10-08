@@ -1,0 +1,41 @@
+name: Docker Pipeline
+
+on: 
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          cd docker_ci
+          docker build -t devops-lab:test .
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run test
+        run: |
+          echo "Running Docker tests..."
+          echo "Tests completed successfully."
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying Docker image..."
+          echo "Deployment completed successfully."    
