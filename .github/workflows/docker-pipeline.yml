@@ -15,7 +15,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd docker_ci
-          docker build -t devops-lab:latest wrong_folder
+          docker build -t devops-lab:latest .
 
   test:
     needs: build
