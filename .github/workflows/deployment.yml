@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to staging
         run: |
           cd deployment_ci
-          chmod +x deploy.sh 
+           
 
   deploy_production:
     needs: deploy_staging
