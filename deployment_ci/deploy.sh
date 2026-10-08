@@ -16,6 +16,6 @@ echo "================================"
 
 mkdir -p deployments/$ENVIRONMENT
 
-cp app.py deployments/$ENVIRONMENT/app.py
+cp deploy_app.py deployments/$ENVIRONMENT/deploy_app.py
 
 echo "Deployment successful"
