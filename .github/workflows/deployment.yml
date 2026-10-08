@@ -1,0 +1,52 @@
+name: Deployment CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build application
+        run: |
+          cd deployment_ci
+          mkdir -p build
+          cp deploy_app.py build/
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-build
+          path: deployment_ci/build/
+
+  deploy_staging:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to staging
+        run: |
+          cd deployment_ci
+          chmod +x deploy.sh
+
+  deploy_production:
+    needs: deploy_staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to production
+        run: |
+          cd deployment_ci
+          chmod +x deploy.sh
+          ./deploy.sh production
+      
