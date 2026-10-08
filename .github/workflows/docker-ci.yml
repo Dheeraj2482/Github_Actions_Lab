@@ -23,7 +23,7 @@ jobs:
           docker run -d\
             --name devops-lab \
             -p 5000:5000 \
-            devops-lab:test
+            devops-lab:latest
 
       - name: Test application
         run: |
